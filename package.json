@@ -15,7 +15,7 @@
         "build": "npm run build:compile",
         "start": "npm run test && npm run build:compile:server && node build/server.js",
         "deploy": "npm run test && npm run build:pack && wt create build/dist/buzz-monitor.js",
-        "test:unit": "mocha --reporter nyan build/tests",
+        "test:unit": "mocha --recursive --reporter nyan build/tests",
         "test:coverage": "echo \"to be done\"",
         "build:clean": "rimraf build",
         "build:clean:test": "rimraf build/tests",
