@@ -2,20 +2,22 @@ import { describe, it } from 'mocha';
 import { expect } from 'chai';
 import { stub } from 'sinon';
 
-import webtaskFactory from '~/lib/express-webtask-factory';
+import { Factory } from '~/lib/express-webtask-factory';
 
-describe('When factoring the express webtask', () => {
+describe('When creating an express webtask', () => {
 
-    it('should delegate to Webtask::fromExpress', () => {
+    it('should call fromExpress method of webtask passing along the app', () => {
         const [ expectedTask, appMock, webtaskMock ] = [ 'expectedTask', 'appMock', { fromExpress: stub() } ];
 
-        const factory = webtaskFactory(appMock, {
-            $Webtask: webtaskMock
+        const expressWebtaskFactory = Factory({
+            webtask: webtaskMock
         });
 
         webtaskMock.fromExpress.returns(expectedTask);
 
-        expect(factory()).to.equal(expectedTask);
+        let webtask = expressWebtaskFactory(appMock);
+
+        expect(webtask).to.equal(expectedTask);
         expect(webtaskMock.fromExpress.withArgs(appMock).calledOnce).to.equal(true);
     });
 });

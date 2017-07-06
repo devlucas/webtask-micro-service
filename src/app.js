@@ -1,24 +1,27 @@
 import Express from 'express';
 
-import MapMiddlewares from '@/lib/middleware-mapper';
-import MapRoutes from '@/lib/route-mapper';
-import * as Resources from '@/resources';
+import MiddlewareBinder from '@/lib/middleware-binder';
+import ResourceBinder from '@/lib/resource-binder';
+import Mapper from '@/lib/mapper';
+
 import * as Middlewares from '@/middlewares';
+import * as Resources from '@/resources';
 
 export const Factory = (deps = {}) => {
     const {
         express = Express,
-        mapRoutes = MapRoutes,
-        mapMiddlewares = MapMiddlewares,
+        mapper = Mapper,
+        resourceBinder = ResourceBinder,
+        middlewareBinder = MiddlewareBinder,
         resources = Resources,
         middlewares = Middlewares
     } = deps;
 
     return () => {
-        let app = new express();
+        const app = new express();
 
-        app.use('/', mapMiddlewares(middlewares));
-        app.use('/', mapRoutes(resources));
+        app.use('/', mapper(resources, resourceBinder));
+        app.use('/', mapper(middlewares, middlewareBinder));
 
         return app;
     };

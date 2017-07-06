@@ -1,7 +1,11 @@
 import Webtask from 'webtask-tools';
 
-export default (app, deps = {}) => {
-    const { $Webtask = Webtask } = deps;
+export const Factory = (deps = {}) => {
+    const {
+        webtask = Webtask
+    } = deps;
 
-    return () => $Webtask.fromExpress(app);
+    return app => webtask.fromExpress(app);
 };
+
+export default Factory();

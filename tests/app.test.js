@@ -5,40 +5,31 @@ import { spy, stub } from 'sinon';
 import { Factory } from '~/app';
 
 describe('When bootstrapping the app', () => {
-    let bootstrap;
-    let routeMapStub;
-    let middlewareMapStub;
+    const [ resourcesRouter, middlewaresRouter, resources, middlewares, resourceBinder, middlewareBinder ] = [
+        Symbol('expectedResourcesRouter'),
+        Symbol('expectedMiddlewaresRouter'),
+        Symbol('expectedResources'),
+        Symbol('expectedMiddlewares'),
+        Symbol('expectedResourceBinder'),
+        Symbol('expectedMiddlewareBinder')
+    ];
+
+    let app;
 
     beforeEach(() => {
-        routeMapStub = stub();
-        middlewareMapStub = stub();
+        let [ mapper, express ] = [ stub(), stub().returns({ use: spy() }) ];
 
-        bootstrap = Factory({
-            express: spy(() => {
-                return { use: stub() };
-            }),
-            mapRoutes: routeMapStub,
-            mapMiddlewares: middlewareMapStub
-        });
+        mapper.withArgs(resources, resourceBinder).returns(resourcesRouter);
+        mapper.withArgs(middlewares, middlewareBinder).returns(middlewaresRouter);
+
+        app = Factory({ express, mapper, resourceBinder, middlewareBinder, resources, middlewares })();
     });
 
-    it('should bind whatever routes are returned by mapRoutes', () => {
-        const expectedRouteMap = 'expectedRouteMap';
-
-        routeMapStub.returns(expectedRouteMap);
-
-        let app = bootstrap();
-
-        expect(app.use.withArgs('/', expectedRouteMap).calledOnce).to.equal(true);
+    it('should bind resources Router onto the root path', () => {
+        expect(app.use.withArgs('/', resourcesRouter).calledOnce).to.equal(true);
     });
 
-    it('should bind whatever middlewares are return by mapMiddlewares', () => {
-        const expectedMiddlewareMap = 'expectedMiddlewareMap';
-
-        middlewareMapStub.returns(expectedMiddlewareMap);
-
-        let app = bootstrap();
-
-        expect(app.use.withArgs('/', expectedMiddlewareMap).calledOnce).to.equal(true);
+    it('should bind middlewares Router onto the root path', () => {
+        expect(app.use.withArgs('/', middlewaresRouter).calledOnce).to.equal(true);
     });
 });

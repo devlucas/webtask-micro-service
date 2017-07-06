@@ -1,8 +1,8 @@
 import Http from 'http';
+
 import App from '~/app';
 
-const app = App();
-const port = process.argv[2] || 8080;
+const [ app, port ] = [ App(), process.argv[2] || 8080 ];
 
 console.log(`Listening on port ${port}`);
 
