@@ -9,7 +9,7 @@ describe('When binding a resource to a route in the router', () => {
     it('should bind a route corresponding to the method, address and handler of the resource', () => {
         const [ router, address, handler ] = [ { get: stub() }, '/hello-world', Symbol('handler') ];
 
-        expect(bind(router, { endpoint: { method: 'get', address, handler } })).to.equal(router);
+        expect(bind(router, stub().returns({ endpoint: { method: 'get', address, handler } }))).to.equal(router);
         expect(router.get.withArgs(address, handler).calledOnce).to.equal(true);
     });
 });

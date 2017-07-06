@@ -1,6 +1,8 @@
 export default (router, resource) => {
-    for (let endpoint in resource) {
-        const { method, address, handler } = resource[endpoint];
+    let endpoints = resource();
+
+    for (let endpoint in endpoints) {
+        const { method, address, handler } = endpoints[endpoint];
 
         router[method](address, handler);
     }

@@ -16,7 +16,7 @@
         "build": "npm run build:compile",
         "start": "npm run test && npm run build:compile:server && node build/server.js",
         "deploy": "npm run test && npm run build:pack && wt create build/dist/buzz-monitor.js",
-        "test:unit": "nyc --reporter=html --reporter=text mocha --recursive --reporter nyan build/tests",
+        "test:unit": "nyc --reporter=html --reporter=text mocha --recursive build/tests",
         "test:coverage": "echo \"to be done\"",
         "build:clean": "rimraf build",
         "build:clean:test": "rimraf build/tests",
@@ -29,6 +29,7 @@
         "build:pack": "webpack --config build/webpack.config.js"
     },
     "dependencies": {
+        "body-parser": "^1.17.2",
         "express": "^4.15.3",
         "webtask-tools": "^3.2.0"
     },
