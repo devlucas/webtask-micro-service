@@ -20,8 +20,8 @@ export const Factory = (deps = {}) => {
   return (app) => {
     const router = $Express.Router()
 
-    app.use('/', mapper(router, resources, resourceBinder))
     app.use('/', mapper(router, middlewares, middlewareBinder))
+    app.use('/', mapper(router, resources, resourceBinder))
 
     return app
   }
