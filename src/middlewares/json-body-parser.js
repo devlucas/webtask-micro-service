@@ -8,5 +8,4 @@ export const Factory = (deps = {}) => {
     return () => bodyParser.json();
 };
 
-
-export default () => Factory();
+export default Factory();

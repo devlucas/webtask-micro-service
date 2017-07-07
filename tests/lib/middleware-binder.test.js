@@ -2,7 +2,7 @@ import { describe, it } from 'mocha';
 import { expect } from 'chai';
 import { stub } from 'sinon';
 
-import bind from '~/lib/middleware-binder';
+import bind from '@/lib/middleware-binder';
 
 describe('When binding a middleware', () => {
 

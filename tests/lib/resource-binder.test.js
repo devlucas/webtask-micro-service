@@ -2,7 +2,7 @@ import { describe, it } from 'mocha';
 import { expect } from 'chai';
 import { stub } from 'sinon';
 
-import bind from '~/lib/resource-binder';
+import bind from '@/lib/resource-binder';
 
 describe('When binding a resource to a route in the router', () => {
 

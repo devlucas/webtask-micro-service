@@ -2,7 +2,7 @@ import { describe, it } from 'mocha';
 import { expect } from 'chai';
 import { stub } from 'sinon';
 
-import { Factory } from '~/middlewares/json-body-parser';
+import { Factory } from '@/middlewares/json-body-parser';
 
 describe('When creating the json body parser middleware', () => {
 

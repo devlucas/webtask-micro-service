@@ -19,9 +19,10 @@ export const Factory = (deps = {}) => {
 
     return () => {
         const app = new express();
+        const router = express.Router();
 
-        app.use('/', mapper(resources, resourceBinder));
-        app.use('/', mapper(middlewares, middlewareBinder));
+        app.use('/', mapper(router, resources, resourceBinder));
+        app.use('/', mapper(router, middlewares, middlewareBinder));
 
         return app;
     };

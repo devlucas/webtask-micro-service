@@ -2,7 +2,7 @@ import { describe, it } from 'mocha';
 import { expect } from 'chai';
 import { stub } from 'sinon';
 
-import { Factory } from '~/lib/express-webtask-factory';
+import { Factory } from '@/lib/express-webtask-factory';
 
 describe('When creating an express webtask', () => {
 

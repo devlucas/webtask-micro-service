@@ -1,6 +1,6 @@
 export default () => {
-    const sayHello = { method: 'get', address: '/hello-world', handler: (req, res) => {
-        res.end('Hello World');
+    const sayHello = { method: 'get', address: '/helloworld', handler: (req, res) => {
+        res.send('Hello World');
     }};
 
     return { sayHello };
