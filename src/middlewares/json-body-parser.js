@@ -1,11 +1,11 @@
-import BodyParser from 'body-parser';
+import BodyParser from 'body-parser'
 
 export const Factory = (deps = {}) => {
-    const {
+  const {
         bodyParser = BodyParser
-    } = deps;
+    } = deps
 
-    return () => bodyParser.json();
-};
+  return () => bodyParser.json()
+}
 
-export default Factory();
+export default Factory()

@@ -1,5 +1,5 @@
 export default (router, middleware) => {
-    router.use(middleware());
+  router.use(middleware())
 
-    return router;
-};
+  return router
+}

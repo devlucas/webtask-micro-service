@@ -1,4 +1,4 @@
-import ExpressWebtaskFactory from '~/lib/express-webtask-factory';
-import App from '~/app';
+import ExpressWebtaskFactory from '~/lib/express-webtask-factory'
+import App from '~/app'
 
-module.exports = ExpressWebtaskFactory(App());
+module.exports = ExpressWebtaskFactory(App())

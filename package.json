@@ -16,7 +16,7 @@
         "clean": "rimraf build",
         "build": "npm run clean && babel src -d build",
         "coverage": "nyc report --reporter=text-lcov | coveralls",
-        "test": "cross-env NODE_ENV=test nyc mocha --recursive tests",
+        "test": "standard && cross-env NODE_ENV=test nyc mocha --recursive tests",
         "start": "npm run test && npm run build && babel server.js -o build/server.js && node build/server.js",
         "deploy": "npm run test && npm run build && npm run build:bundle && wt create build/dist/buzz-monitor.js",
         "build:static": "cp-file package.json build/dist/package.json",
@@ -45,6 +45,7 @@
         "nyc": "^11.0.3",
         "rimraf": "^2.6.1",
         "sinon": "^2.3.6",
+        "standard": "^10.0.2",
         "webpack": "^3.0.0",
         "webpack-node-externals": "^1.6.0"
     },
