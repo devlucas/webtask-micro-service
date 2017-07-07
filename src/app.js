@@ -17,8 +17,7 @@ export const Factory = (deps = {}) => {
         middlewares = Middlewares
     } = deps
 
-  return () => {
-    const app = new $Express()
+  return (app) => {
     const router = $Express.Router()
 
     app.use('/', mapper(router, resources, resourceBinder))

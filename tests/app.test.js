@@ -16,12 +16,11 @@ describe('App bootstrapping', () => {
   let app, mapper
 
   beforeEach(() => {
-    let $Express = stub().returns({ use: spy() })
-    $Express.Router = stub().returns(router)
+    let $Express = { Router: stub().returns(router) }
 
     mapper = stub().returnsArg(0)
 
-    app = Factory({ mapper, resources, middlewares, resourceBinder, middlewareBinder, $Express })()
+    app = Factory({ mapper, resources, middlewares, resourceBinder, middlewareBinder, $Express })({ use: spy() })
   })
 
   it('should get a router back from mapper for both resources and middlewares', () => {

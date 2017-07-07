@@ -18,7 +18,7 @@
         "coverage": "nyc report --reporter=text-lcov | coveralls",
         "test": "standard && cross-env NODE_ENV=test nyc mocha --recursive tests",
         "start": "npm run test && npm run build && babel server.js -o build/server.js && node build/server.js",
-        "deploy": "npm run test && npm run build && npm run build:bundle && wt create build/dist/buzz-monitor.js",
+        "deploy": "npm run test && npm run build && npm run build:bundle && wt create build/dist/buzz-monitor.js --secrets-file prod.env",
         "build:static": "cp-file package.json build/dist/package.json",
         "build:bundle": "npm run build:compile:webtask && webpack --config build/webpack.config.js",
         "build:compile:webtask": "babel webpack.config.js -o build/webpack.config.js && babel buzz-monitor.js -o build/buzz-monitor.js && npm run build:static"
@@ -41,6 +41,7 @@
         "coveralls": "^2.13.1",
         "cp-file-cli": "^1.0.1",
         "cross-env": "^5.0.1",
+        "dotenv": "^4.0.0",
         "mocha": "^3.4.2",
         "nyc": "^11.0.3",
         "rimraf": "^2.6.1",

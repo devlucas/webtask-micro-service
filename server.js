@@ -1,7 +1,20 @@
+import Express from 'express'
+import dotenv from 'dotenv'
+
 import App from '~/app'
 
-const port = process.argv[2] || 8080
+const [ app, port, config ] = [
+  new Express(),
+  process.argv[2] || 8080,
+  dotenv.config({ path: 'local.env' || process.argv[3] }).parsed
+]
 
-App().listen(port, () => {
+app.use((req, res, next) => {
+  req.webtaskContext = { data: config, secrets: config }
+
+  next()
+})
+
+App(app).listen(port, () => {
   console.log(`Listening on port ${port}`)
 })
