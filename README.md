@@ -4,9 +4,9 @@ A serverless microservice that allows subscribers to listen upon uniform events 
 Proper documentation will be added soon.
 
 # Status
-[![Maintenance](https://img.shields.io/maintenance/yes/2017.svg?style=flat-square)]()
-[![license](https://img.shields.io/github/license/devlucas/buzz-monitor.svg?style=flat-square)]()
-[![Build Status](https://img.shields.io/travis/devlucas/buzz-monitor.svg?style=flat-square&maxAge=0)](https://github.com/devlucas/buzz-monitor)
+[![Maintenance](https://img.shields.io/maintenance/yes/2017.svg?style=flat-square)](https://github.com/devlucas/buzz-monitor/commits/master)
+[![license](https://img.shields.io/github/license/devlucas/buzz-monitor.svg?style=flat-square)](https://github.com/devlucas/buzz-monitor/blob/master/LICENSE)
+[![Build Status](https://img.shields.io/travis/devlucas/buzz-monitor.svg?style=flat-square&maxAge=0)](https://travis-ci.org/devlucas/buzz-monitor)
 [![Coverage Status](https://img.shields.io/coveralls/devlucas/buzz-monitor.svg?style=flat-square&maxAge=0)](https://coveralls.io/github/devlucas/buzz-monitor?branch=master)
 [![Dependencies Status](https://img.shields.io/david/devlucas/buzz-monitor.svg?style=flat-square&maxAge=360)](https://david-dm.org/devlucas/buzz-monitor)
 [![DevDependencies Status](https://img.shields.io/david/dev/devlucas/buzz-monitor.svg?style=flat-square&maxAge=360)](https://david-dm.org/devlucas/buzz-monitor?type=dev)
