@@ -54,7 +54,7 @@ describe('When intercepting requests for authentication enforcement', () => {
 
       checker(req, res, next)
 
-      expect(jwks.expressJwtSecret.calledWithMatch({ jwksUri: `${issuer}/.well-known/jwks.json` })).to.equal(true)
+      expect(jwks.expressJwtSecret.calledWithMatch({ jwksUri: `${issuer}.well-known/jwks.json` })).to.equal(true)
       expect(jwt.withArgs({ secret: expectedJwks, audience, issuer, algorithms: [algorithm] }).calledOnce).to.equal(true)
     })
   })

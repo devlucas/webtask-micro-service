@@ -22,10 +22,18 @@ describe('When intercepting requests for authorization enforcement', () => {
     checker = Factory({ jwtAuthz })
   })
 
-  it('should call next right away when there are no permissions to enforce', () => {
-    expect(checker(permissions)(req, res, next)).to.equal(expectedNext)
-    expect(jwtAuthz.called).to.equal(false)
-    expect(next.calledOnce).to.equal(true)
+  describe('with no permissions to enforce', () => {
+    it('should call next right away when permissions are empty', () => {
+      expect(checker(permissions)(req, res, next)).to.equal(expectedNext)
+      expect(jwtAuthz.called).to.equal(false)
+      expect(next.calledOnce).to.equal(true)
+    })
+
+    it('should call next right away when permissions are undefined', () => {
+      expect(checker(undefined)(req, res, next)).to.equal(expectedNext)
+      expect(jwtAuthz.called).to.equal(false)
+      expect(next.calledOnce).to.equal(true)
+    })
   })
 
   it('should call next right away when auth is turned off', () => {

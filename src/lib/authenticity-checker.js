@@ -12,7 +12,7 @@ export const Factory = (deps = {}) => {
       cache: true,
       rateLimit: true,
       jwksRequestsPerMinute: 5,
-      jwksUri: `${issuer}/.well-known/jwks.json`
+      jwksUri: `${issuer}.well-known/jwks.json`
     })
   }
 
@@ -24,7 +24,7 @@ export const Factory = (deps = {}) => {
     }
 
     return jwt({
-      issuer: secrets.AUTH_ISSUER,
+      issuer: `${secrets.AUTH_ISSUER}`,
       secret: retrieveSecret(secrets.AUTH_ISSUER),
       audience: secrets.AUTH_AUDIENCE,
       algorithms: [ secrets.AUTH_ALGORITHM ]

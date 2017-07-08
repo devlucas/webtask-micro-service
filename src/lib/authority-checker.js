@@ -8,7 +8,7 @@ export const Factory = (deps = {}) => {
   return (permissions) => {
     return (req, res, next) => {
       const authIsOff = req.webtaskContext.secrets.AUTH.toUpperCase() === 'OFF'
-      const emptyPermissions = Array.isArray(permissions) && !permissions.length
+      const emptyPermissions = Array.isArray(permissions) ? !permissions.length : true
 
       if (authIsOff || emptyPermissions) {
         return next()
