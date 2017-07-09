@@ -33,6 +33,7 @@
     "build:compile:webtask": "babel webpack.config.js -o build/webpack.config.js && babel buzz-monitor.js -o build/buzz-monitor.js && npm run build:static"
   },
   "dependencies": {
+    "async-middleware": "^1.2.1",
     "body-parser": "^1.17.2",
     "express": "^4.15.3",
     "express-jwt": "^5.3.0",
