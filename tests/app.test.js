@@ -13,14 +13,27 @@ describe('App bootstrapping', () => {
     Symbol('expectedMiddlewareBinder')
   ]
 
-  let app, mapper
+  let app, mapper, startupMiddlewares
 
   beforeEach(() => {
     let $Express = { Router: stub().returns(router) }
 
     mapper = stub().returnsArg(0)
+    startupMiddlewares = stub().returnsArg(0)
 
-    app = Factory({ mapper, resources, middlewares, resourceBinder, middlewareBinder, $Express })({ use: spy() })
+    app = Factory({
+      startupMiddlewares,
+      mapper,
+      resources,
+      middlewares,
+      resourceBinder,
+      middlewareBinder,
+      $Express
+    })({ use: spy() })
+  })
+
+  it('should bind initial middlewares', () => {
+    expect(startupMiddlewares.withArgs(app).calledOnce).to.equal(true)
   })
 
   it('should get a router back from mapper for both resources and middlewares', () => {
