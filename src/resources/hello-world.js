@@ -1,11 +1,9 @@
-export default () => {
-  const sayHello = {
-    method: 'get',
-    address: '/helloworld',
-    handler: (req, res) => {
-      res.send('Hello World')
-    }
-  }
+import { endpoint } from '@/lib/endpoint'
 
-  return { sayHello }
+export default () => {
+  return {
+    sayHello: endpoint('/helloworld', 'get', (req, res) => {
+      res.send('Hello World')
+    })
+  }
 }
