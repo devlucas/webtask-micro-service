@@ -1,4 +1,6 @@
 language: node_js
+dist: trusty
+sudo: required
 before_install:
 - sudo add-apt-repository ppa:agwa/git-crypt -y
 - sudo apt-get update -qq
