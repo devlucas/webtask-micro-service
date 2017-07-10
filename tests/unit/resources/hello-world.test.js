@@ -8,7 +8,7 @@ describe('Hello World resource', () => {
   let resource, response
 
   beforeEach(() => {
-    response = { send: spy() }
+    response = { json: spy() }
 
     resource = helloWorld()
   })
@@ -21,7 +21,7 @@ describe('Hello World resource', () => {
     it('should respond with Hello World', () => {
       resource.sayHello.handler({}, response)
 
-      expect(response.send.withArgs('Hello World!').calledOnce).to.equal(true)
+      expect(response.json.withArgs({ message: 'Hello World!' }).calledOnce).to.equal(true)
     })
   })
 
@@ -33,7 +33,7 @@ describe('Hello World resource', () => {
     it('should respond with Hello + provide name', () => {
       resource.postHello.handler({ body: { name: 'John' } }, response)
 
-      expect(response.send.withArgs('Hello John!').calledOnce).to.equal(true)
+      expect(response.json.withArgs({ message: 'Hello John!' }).calledOnce).to.equal(true)
     })
   })
 })
