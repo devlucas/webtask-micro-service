@@ -1,4 +1,13 @@
 language: node_js
+before_install:
+- sudo apt-get update -qq
+- sudo apt-get install -qq git-crypt
+script:
+- git-crypt unlock test.key
+- npm run test:all
 after_success: npm run coverage
 node_js:
-  - "8"
+- '8'
+dd:
+- openssl aes-256-cbc -K $encrypted_589c6aae0ca0_key -iv $encrypted_589c6aae0ca0_iv
+  -in test.key.enc -out test.key -d

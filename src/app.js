@@ -3,6 +3,7 @@ import Express from 'express'
 import StartupMiddlewares from '@/lib/startup-middlewares'
 import MiddlewareBinder from '@/lib/middleware-binder'
 import ResourceBinder from '@/lib/resource-binder'
+import ErrorHandlers from '@/lib/error-handlers'
 import Mapper from '@/lib/mapper'
 
 import * as Middlewares from '@/middlewares'
@@ -16,7 +17,8 @@ export const Factory = (deps = {}) => {
     resourceBinder = ResourceBinder,
     middlewareBinder = MiddlewareBinder,
     resources = Resources,
-    middlewares = Middlewares
+    middlewares = Middlewares,
+    errorHandlers = ErrorHandlers
   } = deps
 
   return (app) => {
@@ -26,6 +28,8 @@ export const Factory = (deps = {}) => {
 
     app.use('/', mapper(router, middlewares, middlewareBinder))
     app.use('/', mapper(router, resources, resourceBinder))
+
+    app = errorHandlers(app)
 
     return app
   }

@@ -5,6 +5,7 @@ Proper documentation will be added soon.
 
 # Status
 [![Maintenance](https://img.shields.io/maintenance/yes/2017.svg?style=flat-square)](https://github.com/devlucas/buzz-monitor/commits/master)
+[![Known Vulnerabilities](https://snyk.io/test/github/devlucas/buzz-monitor/badge.svg?style=flat-square)](https://snyk.io/test/github/devlucas/buzz-monitor)
 [![license](https://img.shields.io/github/license/devlucas/buzz-monitor.svg?style=flat-square)](https://github.com/devlucas/buzz-monitor/blob/master/LICENSE)
 [![Build Status](https://img.shields.io/travis/devlucas/buzz-monitor.svg?style=flat-square&maxAge=0)](https://travis-ci.org/devlucas/buzz-monitor)
 [![Coverage Status](https://img.shields.io/coveralls/devlucas/buzz-monitor.svg?style=flat-square&maxAge=0)](https://coveralls.io/github/devlucas/buzz-monitor?branch=master)

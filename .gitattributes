@@ -1,1 +1,4 @@
-*.env filter=git-crypt diff=git-crypt
+local.env filter=git-crypt-dev diff=git-crypt-dev
+prod.env filter=git-crypt-prod diff=git-crypt-prod
+test.env filter=git-crypt-test diff=git-crypt-test
+tests/integration/test.postman_environment.json filter=git-crypt-test diff=git-crypt-test

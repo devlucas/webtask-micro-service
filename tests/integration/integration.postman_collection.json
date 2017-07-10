@@ -1,0 +1,228 @@
+{
+	"variables": [],
+	"info": {
+		"name": "Buzz Monitor",
+		"_postman_id": "fe0fb67d-e98e-ad84-afb3-4a878d51b1c0",
+		"description": "Collection to test final end to end integration.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Obtain valid access token for non-interactive test client",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"const responseData = JSON.parse(responseBody);",
+							"",
+							"tests['Status code is 200'] = responseCode.code === 200;",
+							"tests['Access token is present'] = typeof responseData.access_token === 'string';",
+							"",
+							"postman.setEnvironmentVariable('access_token', responseData.access_token);"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "{{authorizationServer}}/oauth/token",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"audience\": \"{{apiIdentifier}}\",\n  \"grant_type\": \"client_credentials\",\n  \"client_id\": \"{{nonInteractiveClientId}}\",\n  \"client_secret\": \"{{nonInteractiveClientSecret}}\"\n}"
+				},
+				"description": "Obtains a valid access token from the authorization server for a non-interactive client"
+			},
+			"response": []
+		},
+		{
+			"name": "Valid post to /helloworld",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"const responseData = JSON.parse(responseBody);",
+							"",
+							"tests['Status code is 200'] = responseCode.code === 200;",
+							"tests['Response is valid'] = responseData.message === 'Hello John!';"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "{{address}}/helloworld",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{access_token}}",
+						"description": ""
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\": \"John\"\n}"
+				},
+				"description": "Posts a valid payload to /helloworld and checks the response is correct."
+			},
+			"response": []
+		},
+		{
+			"name": "Invalid post to /helloworld",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"const responseData = JSON.parse(responseBody);",
+							"",
+							"tests['Status code is 400'] = responseCode.code === 400;",
+							"tests['Error is returned'] = responseData.errors[0] = {",
+							"    'param': 'name',",
+							"    'msg': 'you must provide a name'",
+							"};"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "{{address}}/helloworld",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{access_token}}",
+						"description": ""
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"firstName\": \"John\"\n}"
+				},
+				"description": "Posts a valid payload to /helloworld and checks the response is correct."
+			},
+			"response": []
+		},
+		{
+			"name": "Get on /helloworld",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"const responseData = JSON.parse(responseBody);",
+							"",
+							"tests['Status code is 200'] = responseCode.code === 200;",
+							"tests['Response is valid'] = responseData.message === 'Hello World!';"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "{{address}}/helloworld",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{access_token}}",
+						"description": ""
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"firstName\": \"John\"\n}"
+				},
+				"description": "Posts a valid payload to /helloworld and checks the response is correct."
+			},
+			"response": []
+		},
+		{
+			"name": "Unauthorized get on /helloworld",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"const responseData = JSON.parse(responseBody);",
+							"",
+							"tests['Status code is 401'] = responseCode.code === 401;",
+							"tests['Error is returned'] = typeof responseData.error === 'object' && responseData.error.code === 'invalid_token';",
+							"",
+							"postman.setEnvironmentVariable(",
+							"    'access_token', postman.getEnvironmentVariable('swap_access_token')",
+							");",
+							"",
+							"postman.clearEnvironmentVariable('swap_access_token');"
+						]
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"postman.clearEnvironmentVariable('swap_access_token');",
+							"",
+							"postman.setEnvironmentVariable(",
+							"    'swap_access_token', postman.getEnvironmentVariable('access_token')",
+							");",
+							"",
+							"postman.setEnvironmentVariable('access_token', 'invalid');",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "{{address}}/helloworld",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{access_token}}",
+						"description": ""
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"firstName\": \"John\"\n}"
+				},
+				"description": "Posts a valid payload to /helloworld and checks the response is correct."
+			},
+			"response": []
+		}
+	]
+}

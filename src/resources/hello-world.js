@@ -10,11 +10,11 @@ export default () => {
   }
 
   let postHello = endpoint('/helloworld', 'post', (req, res) => {
-    res.send(`Hello ${req.body.name}!`)
+    res.json({ message: `Hello ${req.body.name}!` })
   }, [], postHelloSchema)
 
   let sayHello = endpoint('/helloworld', 'get', (req, res) => {
-    res.send('Hello World!')
+    res.json({ message: 'Hello World!' })
   })
 
   return { sayHello, postHello }
