@@ -165,7 +165,7 @@ AUTH_AUDIENCE=<your Api identifier here> # This is the value you provide when cr
 AUTH_ALGORITHM=RS256 # Unless you know very well what you are doing, leave it like RS256
 ```
 
-You can bypass authentication and authorization on an endpoint base, and you can also specify authorization rules (permissions) as described [previously](#extensible-resource-definition).
+You can bypass authentication and authorization on an endpoint basis, and you can also specify authorization rules (permissions) as described [previously](#extensible-resource-definition).
 
 ## Unit testing setup
 Unit testing should always be pretty straightforward, and we aren't going to break that rule, is that right!? See the code bellow:
@@ -204,16 +204,24 @@ describe('Helmet middleware', () => {
 
 A few things to note:
 - Yes, mocha/chai/sinon all come pre-installed to your pleasure
-- `tests/unit` are a replica of `src`
+- `tests/unit` is a replica of `src`
+
   This means everytime you create a file at `src/resources/my-resource.js` you should create a test at `tests/unit/resources/my-resource.test.js`
 
 - The Factory pattern
+
   You will note the `export const Factory...` line and the later importation from the test, although you are not required to follow it, it uses modern features of the language to delivery very elegant dependency injection capabilities, I suggest you to adopt that idea! :)
 
 ## Integration testing setup
-Postman is our tool of choice, you should import the collection from `tests/integration/integration.postman_collection.json` and modify it according to your needs. There is also an postman environment template at `tests/integration/example.postman_environment.json` that you should use to get started.
+Postman is our tool of choice, you should import the collection bellow and modify it according to your needs:
 
-Once you have your postman collection up and running, just export it and override the base files mentioned above and then run:
+`tests/integration/integration.postman_collection.json`
+
+There is also the following postman environment template that you should use to get started.
+
+`tests/integration/example.postman_environment.json`
+
+Once you have your postman collection up and running, just export it to override the base files mentioned above and then run:
 ```shell
 npm run test:integration
 ```
@@ -230,7 +238,7 @@ test.env filter=git-crypt-test diff=git-crypt-test
 tests/integration/test.postman_environment.json filter=git-crypt-test diff=git-crypt-test
 ```
 
-If you don't have access to the original keys, the way to move forward is to override these files and their respective keys, **BEFORE** you commit any changes you want to keep secret! You can use the following command to do so:
+If you don't have access to the original keys, the way to move forward is to override these files and their respective keys, **BEFORE** you commit any changes you want to keep secret! You can use the following commands to do so:
 ```shell
 git-crypt init -k dev && git-crypt init -k test && git-crypt init -k prod
 find . -name "*.env" | awk '!/node/ {print $0}' | while read secret_file; do cat env.example > $secret_file; done

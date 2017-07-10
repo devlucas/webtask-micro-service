@@ -122,6 +122,10 @@ You should be good to go, run the following:
 npm run test:integration # no fancy flying cats here :(
 ```
 
+### Development
+
+See [DEVELOPMENT.md](DEVELOPMENT.md)
+
 ### Deploying
 In order to deploy, you need a prod.env file unlocked, if you have access to the symetric key used to encrypt it, and you have been following the steps, it should already be decrypted, try the following:
 ```shell
