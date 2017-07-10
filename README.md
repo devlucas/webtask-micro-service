@@ -20,19 +20,21 @@ You can see a live demo [here](https://wt-2835e325db07479831e69908cbe682a4-0.run
 
 ## Features
 
-- [Incoming request payload validation]()
-- [Incoming request payload json parsing]()
-- [Helmet enabled by default]()
-- [Support for ES7 async/await on middlewares]()
-- [Extensible resources definition]()
-- [Extensible middlewares definition]()
-- [Error handling for validation issues]()
-- [Error handling for authentication/authorization issues]()
-- [Configuration based JWT authentication middleware]()
-- [Granular authorization requirements through OAuth 2.0 scopes at endpoint level]()
-- [Unit testing setup using Mocha/Chai/Sinon]()
-- [Integration testing setup using Postman/Newman]()
-- [Environment files transparent encryptation using git-crypt with multiple keys]()
+- [Standardized root module namespacing](DEVELOPMENT.md#namespacing)
+- [Extensible middleware definition](DEVELOPMENT.md#extensible-middleware-definition)
+- [Extensible resource definition](DEVELOPMENT.md#extensible-resource-definition)
+- [Incoming request payload validation](DEVELOPMENT.md#startup-middlewares)
+- [Incoming request payload json parsing](DEVELOPMENT.md#startup-middlewares)
+- [Helmet enabled by default](DEVELOPMENT.md#extensible-middleware-definition)
+- [Extensible error handling definition](DEVELOPMENT.md#error-handling)
+- [Error handling for validation issues](DEVELOPMENT.md#error-handling)
+- [Error handling for authentication/authorization issues](DEVELOPMENT.md#error-handling)
+- [Support for ES7 async/await on middlewares](DEVELOPMENT.md#support-for-es7-async-and-await)
+- [Configuration based JWT authentication middleware](DEVELOPMENT.md#authentication-and-authorization)
+- [Granular authorization requirements through OAuth 2.0 scopes at endpoint level](DEVELOPMENT.md#authentication-and-authorization)
+- [Unit testing setup using Mocha/Chai/Sinon](DEVELOPMENT.md#unit-testing-setup)
+- [Integration testing setup using Postman/Newman](DEVELOPMENT.md#integration-testing-setup)
+- [Transparent encryptation for environment files using git-crypt with multiple keys](DEVELOPMENT.md#transparent-encryptation-for-environment-files-using-git-crypt-with-multiple-keys)
 
 ## Getting started
 
