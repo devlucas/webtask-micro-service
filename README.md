@@ -1,15 +1,15 @@
-# Buzz Monitor
-*A secure serverless micro-service that receives notifications from IFTTT and sends them to a Slack Channel.*
+# Webtask micro-service
+*Reference implementation of a secure serverless micro-service built on top of ExpressJS, Webtask and Auth0.*
 
 ## Status
 
-[![Maintenance](https://img.shields.io/maintenance/yes/2017.svg?style=flat-square)](https://github.com/devlucas/buzz-monitor/commits/master)
-[![Known Vulnerabilities](https://snyk.io/test/github/devlucas/buzz-monitor/badge.svg?style=flat-square)](https://snyk.io/test/github/devlucas/buzz-monitor)
-[![license](https://img.shields.io/github/license/devlucas/buzz-monitor.svg?style=flat-square)](https://github.com/devlucas/buzz-monitor/blob/master/LICENSE)
-[![Build Status](https://img.shields.io/travis/devlucas/buzz-monitor.svg?style=flat-square&maxAge=0)](https://travis-ci.org/devlucas/buzz-monitor)
-[![Coverage Status](https://img.shields.io/coveralls/devlucas/buzz-monitor.svg?style=flat-square&maxAge=0)](https://coveralls.io/github/devlucas/buzz-monitor?branch=master)
-[![Dependencies Status](https://img.shields.io/david/devlucas/buzz-monitor.svg?style=flat-square&maxAge=360)](https://david-dm.org/devlucas/buzz-monitor)
-[![DevDependencies Status](https://img.shields.io/david/dev/devlucas/buzz-monitor.svg?style=flat-square&maxAge=360)](https://david-dm.org/devlucas/buzz-monitor?type=dev)
+[![Maintenance](https://img.shields.io/maintenance/yes/2017.svg?style=flat-square)](https://github.com/devlucas/webtask-micro-service/commits/master)
+[![Known Vulnerabilities](https://snyk.io/test/github/devlucas/webtask-micro-service/badge.svg?style=flat-square)](https://snyk.io/test/github/devlucas/webtask-micro-service)
+[![license](https://img.shields.io/github/license/devlucas/webtask-micro-service.svg?style=flat-square)](https://github.com/devlucas/webtask-micro-service/blob/master/LICENSE)
+[![Build Status](https://img.shields.io/travis/devlucas/webtask-micro-service.svg?style=flat-square&maxAge=0)](https://travis-ci.org/devlucas/webtask-micro-service)
+[![Coverage Status](https://img.shields.io/coveralls/devlucas/webtask-micro-service.svg?style=flat-square&maxAge=0)](https://coveralls.io/github/devlucas/webtask-micro-service?branch=master)
+[![Dependencies Status](https://img.shields.io/david/devlucas/webtask-micro-service.svg?style=flat-square&maxAge=360)](https://david-dm.org/devlucas/webtask-micro-service)
+[![DevDependencies Status](https://img.shields.io/david/dev/devlucas/webtask-micro-service.svg?style=flat-square&maxAge=360)](https://david-dm.org/devlucas/webtask-micro-service?type=dev)
 [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg?style=flat-square)](https://standardjs.com)
 
 ## Description
@@ -171,7 +171,7 @@ What will be coming soon?
 - [ ] Extract library utilities to their own npm package
 - [ ] Yeoman Generator
 
-Do you miss something? Feel free to [open an issue](https://github.com/devlucas/buzz-monitor/issues)!
+Do you miss something? Feel free to [open an issue](https://github.com/devlucas/webtask-micro-service/issues)!
 
 ## Configuration
 

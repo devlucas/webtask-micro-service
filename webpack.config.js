@@ -1,7 +1,7 @@
 import NodeExternals from 'webpack-node-externals'
 import Path from 'path'
 
-const webtaskName = 'buzz-monitor'
+const webtaskName = 'webtask-micro-service'
 const resolve = target => Path.resolve(__dirname, `${target}`)
 
 export default () => {

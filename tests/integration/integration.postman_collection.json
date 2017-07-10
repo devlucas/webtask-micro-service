@@ -1,7 +1,7 @@
 {
 	"variables": [],
 	"info": {
-		"name": "Buzz Monitor",
+		"name": "Webtask micro-service",
 		"_postman_id": "fe0fb67d-e98e-ad84-afb3-4a878d51b1c0",
 		"description": "Collection to test final end to end integration.",
 		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
