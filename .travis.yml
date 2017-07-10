@@ -1,7 +1,4 @@
 language: node_js
-before_install:
-- sudo apt-get update -qq
-- sudo apt-get install -qq git-crypt
 script:
 - git-crypt unlock test.key
 - npm run test:all
