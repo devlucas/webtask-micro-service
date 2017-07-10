@@ -2,9 +2,9 @@ language: node_js
 dist: trusty
 sudo: required
 before_install:
-- sudo add-apt-repository ppa:avacariu/git-crypt -y --allow-unauthenticated
-- sudo apt-get update -qq
-- sudo apt-get install -qq git-crypt
+- sudo add-apt-repository ppa:avacariu/git-crypt -y
+- sudo apt-get --allow-unauthenticated update -qq
+- sudo apt-get --allow-unauthenticated install -qq git-crypt
 script:
 - git-crypt unlock test.key
 - npm run test:all
