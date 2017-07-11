@@ -1,3 +1,5 @@
+import 'babel-polyfill'
+
 import Express from 'express'
 
 import StartupMiddlewares from '@/lib/startup-middlewares'
