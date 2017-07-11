@@ -16,7 +16,12 @@
 
 This is a reference implementation of a well structured and completely tested serveless micro-service built on top of [Express](http://expressjs.com/), [Webtask](https://webtask.io) and [JWT/Auth0](https://auth0.com), that aims to delivery ease for developing RESTful APIs and to remove as much roadblocks as possible on the way to production, while guaranteeing quality predictable outcome by pairing high testability/extensibility.
 
-You can see a live demo [here](https://wt-2835e325db07479831e69908cbe682a4-0.run.webtask.io/buzz-monitor).
+This implementation is used in a wider integration comprised of:
+- A [Zapier](https://zapier.com/) task that searches for #exploit on twitter every 5 minutes and sends what it founds to a deployment of this codebase on Webtask
+- This [Webtask](https://webtask.io/) deployment, which receives data from Zapier or whatever authenticated source, and then sends it to a Slack channel properly formatted
+- A [Slack Channel](https://join.slack.com/t/devlucas/shared_invite/MjExNDM2MzQ0MDY4LTE0OTk4MTIxNzgtYjZkOWVjYzY5ZQ) where all messages posted by the webtask deployment can be seen
+
+You can see a live demo [here](https://join.slack.com/t/devlucas/shared_invite/MjExNDM2MzQ0MDY4LTE0OTk4MTIxNzgtYjZkOWVjYzY5ZQ).
 
 ## Features
 
@@ -181,6 +186,7 @@ AUTH=<ON or OFF>
 AUTH_ISSUER=<your Auth0 domain here>
 AUTH_AUDIENCE=<your Api identifier here>
 AUTH_ALGORITHM=<signing algorithm here (RS256 is recommended)>
+LOGGER=<ON or OFF>
 
 # this is used on src/resources/twitter-monitor.js and can be remove if you don't need it
 SLACK_URL=<your slack incoming webhook url>
