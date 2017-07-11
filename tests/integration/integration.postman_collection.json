@@ -44,127 +44,7 @@
 			"response": []
 		},
 		{
-			"name": "Valid post to /helloworld",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"type": "text/javascript",
-						"exec": [
-							"const responseData = JSON.parse(responseBody);",
-							"",
-							"tests['Status code is 200'] = responseCode.code === 200;",
-							"tests['Response is valid'] = responseData.message === 'Hello John!';"
-						]
-					}
-				}
-			],
-			"request": {
-				"url": "{{address}}/helloworld",
-				"method": "POST",
-				"header": [
-					{
-						"key": "Authorization",
-						"value": "Bearer {{access_token}}",
-						"description": ""
-					},
-					{
-						"key": "Content-Type",
-						"value": "application/json",
-						"description": ""
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n\t\"name\": \"John\"\n}"
-				},
-				"description": "Posts a valid payload to /helloworld and checks the response is correct."
-			},
-			"response": []
-		},
-		{
-			"name": "Invalid post to /helloworld",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"type": "text/javascript",
-						"exec": [
-							"const responseData = JSON.parse(responseBody);",
-							"",
-							"tests['Status code is 400'] = responseCode.code === 400;",
-							"tests['Error is returned'] = responseData.errors[0] = {",
-							"    'param': 'name',",
-							"    'msg': 'you must provide a name'",
-							"};"
-						]
-					}
-				}
-			],
-			"request": {
-				"url": "{{address}}/helloworld",
-				"method": "POST",
-				"header": [
-					{
-						"key": "Authorization",
-						"value": "Bearer {{access_token}}",
-						"description": ""
-					},
-					{
-						"key": "Content-Type",
-						"value": "application/json",
-						"description": ""
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n\t\"firstName\": \"John\"\n}"
-				},
-				"description": "Posts a valid payload to /helloworld and checks the response is correct."
-			},
-			"response": []
-		},
-		{
-			"name": "Get on /helloworld",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"type": "text/javascript",
-						"exec": [
-							"const responseData = JSON.parse(responseBody);",
-							"",
-							"tests['Status code is 200'] = responseCode.code === 200;",
-							"tests['Response is valid'] = responseData.message === 'Hello World!';"
-						]
-					}
-				}
-			],
-			"request": {
-				"url": "{{address}}/helloworld",
-				"method": "GET",
-				"header": [
-					{
-						"key": "Authorization",
-						"value": "Bearer {{access_token}}",
-						"description": ""
-					},
-					{
-						"key": "Content-Type",
-						"value": "application/json",
-						"description": ""
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n\t\"firstName\": \"John\"\n}"
-				},
-				"description": "Posts a valid payload to /helloworld and checks the response is correct."
-			},
-			"response": []
-		},
-		{
-			"name": "Unauthorized get on /helloworld",
+			"name": "Unauthorized post to /monitor/tweet",
 			"event": [
 				{
 					"listen": "test",
@@ -202,8 +82,8 @@
 				}
 			],
 			"request": {
-				"url": "{{address}}/helloworld",
-				"method": "GET",
+				"url": "{{address}}/monitor/tweet",
+				"method": "POST",
 				"header": [
 					{
 						"key": "Authorization",
@@ -218,7 +98,85 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"firstName\": \"John\"\n}"
+					"raw": "{\n    \"username\": \"test\",\n    \"message\": \"this integration testing setup needs to improve!\",\n    \"reference\": \"https://a.link\",\n    \"timestamp\": \"2017-07-11T20:39:28.564Z\"\n  }"
+				},
+				"description": "Posts a valid payload to /helloworld and checks the response is correct."
+			},
+			"response": []
+		},
+		{
+			"name": "Valid post to /monitor/tweet",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"const responseData = JSON.parse(responseBody);",
+							"",
+							"tests['Status code is 200'] = responseCode.code === 200;",
+							"tests['Response is valid'] = responseData.status === 'ok';"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "{{address}}/monitor/tweet",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{access_token}}",
+						"description": ""
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\": \"test\",\n    \"message\": \"this integration testing setup needs to improve!\",\n    \"reference\": \"https://a.link\",\n    \"timestamp\": \"2017-07-11T20:39:28.564Z\"\n  }"
+				},
+				"description": "Posts a valid payload to /helloworld and checks the response is correct."
+			},
+			"response": []
+		},
+		{
+			"name": "Invalid post to /monitor/tweet",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"const responseData = JSON.parse(responseBody);",
+							"",
+							"tests['Status code is 400'] = responseCode.code === 400;",
+							"tests['Error is returned'] = responseData.errors.length === 4 && responseData.errors[0].param === \"username\";"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "{{address}}/monitor/tweet",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{access_token}}",
+						"description": ""
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"invalid\": \"payload\"\n}"
 				},
 				"description": "Posts a valid payload to /helloworld and checks the response is correct."
 			},

@@ -4,7 +4,6 @@ import Request from 'request-promise'
 
 export const Factory = (deps = {}) => {
   const {
-    logger = console.log,
     request = Request,
     expressHandler = wrap
   } = deps
@@ -18,18 +17,20 @@ export const Factory = (deps = {}) => {
   }
 
   async function sendToSlack (req, res) {
-    logger('A new tweet has been captured, sending it to Slack ...')
+    const LOGGER = req.webtaskContext.backingServices.LOGGER
+
+    LOGGER('A new tweet has been captured, sending it to Slack ...')
 
     let [ method, uri, body ] = [ 'POST', req.webtaskContext.secrets.SLACK_URL, asMessage(req.body) ]
 
     try {
       let response = await request({ method, uri, body, json: true })
 
-      logger('Slack returned: ', response)
+      LOGGER('Slack returned: ', response)
 
       res.json({ status: response })
     } catch (err) {
-      logger('Slack returned with an error: ', err)
+      LOGGER('Slack returned with an error: ', err)
 
       res.status(500).send(err)
     }

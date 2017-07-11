@@ -7,14 +7,12 @@ import { Factory } from '@/resources/twitter-monitor'
 describe('Twitter Monitor resource', () => {
   const expectedResponse = Symbol('expectedresponse')
 
-  let resource, logger, expressHandler, request
+  let resource, request
 
   beforeEach(() => {
-    logger = spy()
-
     request = stub().resolves(expectedResponse)
 
-    resource = Factory({ logger, expressHandler, request })()
+    resource = Factory({ request })()
   })
 
   describe('POST on /monitor/tweet', () => {
@@ -28,7 +26,16 @@ describe('Twitter Monitor resource', () => {
       let handler, req, res
 
       beforeEach(() => {
-        [ req, res ] = [ { body: {}, webtaskContext: { secrets: { SLACK_URL: expectedUri } } }, { json: spy() } ]
+        [ res, req ] = [
+          { json: spy() },
+          {
+            body: {},
+            webtaskContext: {
+              secrets: { SLACK_URL: expectedUri },
+              backingServices: { LOGGER: spy() }
+            }
+          }
+        ]
 
         handler = resource.captureTweet.handler
       })
