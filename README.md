@@ -17,7 +17,7 @@
 This is a reference implementation of a well structured and completely tested serveless micro-service built on top of [Express](http://expressjs.com/), [Webtask](https://webtask.io) and [JWT/Auth0](https://auth0.com), that aims to delivery ease for developing RESTful APIs and to remove as much roadblocks as possible on the way to production, while guaranteeing quality predictable outcome by pairing high testability/extensibility.
 
 This implementation is used in a wider integration comprised of:
-- A [Zapier](https://zapier.com/) task that searches for #exploit on twitter every 5 minutes and sends what it founds to a deployment of this codebase on Webtask
+- A [Zapier](https://zapier.com/) task that searches for #exploit on twitter every 5 minutes and sends what it found to a deployment of this codebase on Webtask
 - This [Webtask](https://webtask.io/) deployment, which receives data from Zapier or whatever authenticated source, and then sends it to a Slack channel properly formatted
 - A [Slack Channel](https://join.slack.com/t/devlucas/shared_invite/MjExNDM2MzQ0MDY4LTE0OTk4MTIxNzgtYjZkOWVjYzY5ZQ) where all messages posted by the webtask deployment can be seen
 
