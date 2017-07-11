@@ -181,6 +181,9 @@ AUTH=<ON or OFF>
 AUTH_ISSUER=<your Auth0 domain here>
 AUTH_AUDIENCE=<your Api identifier here>
 AUTH_ALGORITHM=<signing algorithm here (RS256 is recommended)>
+
+# this is used on src/resources/twitter-monitor.js and can be remove if you don't need it
+SLACK_URL=<your slack incoming webhook url>
 ```
 
 ## Contributing

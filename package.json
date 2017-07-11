@@ -48,6 +48,8 @@
     "express-validator": "^3.2.1",
     "helmet": "^3.6.1",
     "jwks-rsa": "^1.2.0",
+    "request": "^2.81.0",
+    "request-promise": "^4.2.1",
     "webtask-tools": "^3.2.0"
   },
   "devDependencies": {
