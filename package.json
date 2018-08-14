@@ -38,7 +38,9 @@
     "build:compile:webtask": "babel webpack.config.js -o build/webpack.config.js && babel webtask-micro-service.js -o build/webtask-micro-service.js && npm run build:static",
     "build:static:integration": "npm run build:static:integration:env && npm run build:static:integration:collection",
     "build:static:integration:env": "cp-file tests/integration/test.postman_environment.json build/tests/integration/test.postman_environment.json",
-    "build:static:integration:collection": "cp-file tests/integration/integration.postman_collection.json build/tests/integration/integration.postman_collection.json"
+    "build:static:integration:collection": "cp-file tests/integration/integration.postman_collection.json build/tests/integration/integration.postman_collection.json",
+    "snyk-protect": "snyk protect",
+    "prepare": "npm run snyk-protect"
   },
   "dependencies": {
     "async-middleware": "^1.2.1",
@@ -47,12 +49,13 @@
     "express": "^4.15.3",
     "express-jwt": "^5.3.0",
     "express-jwt-authz": "^1.0.0",
-    "express-validator": "^3.2.1",
+    "express-validator": "^5.0.0",
     "helmet": "^3.6.1",
     "jwks-rsa": "^1.2.0",
     "request": "^2.81.0",
     "request-promise": "^4.2.1",
-    "webtask-tools": "^3.2.0"
+    "webtask-tools": "^3.2.0",
+    "snyk": "^1.90.2"
   },
   "devDependencies": {
     "async": "^2.5.0",
@@ -128,5 +131,6 @@
         ]
       }
     }
-  }
+  },
+  "snyk": true
 }
